@@ -1,17 +1,16 @@
 # --------------------------------------------------------------------------------------------------
 # Clock Source
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN H16  IOSTANDARD LVCMOS33 }     [get_ports { sys_clk }];          #IO_L13P_T2_MRCC_35 Sch=SYSCLK
+set_property -dict { PACKAGE_PIN K17  IOSTANDARD LVCMOS33 }     [get_ports { sys_clk }];          #IO_L12P_T1_MRCC_35         Sch=sysclk
 create_clock -add -name sys_clk -period 8.00 -waveform {0 4}    [get_ports { sys_clk }];
 
 # --------------------------------------------------------------------------------------------------
 # Switches
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN M20  IOSTANDARD LVCMOS33 }     [get_ports { fetch_en_i }];    #IO_L7N_T1_AD2N_35 Sch=SW0
-set_property -dict { PACKAGE_PIN M19  IOSTANDARD LVCMOS33 }     [get_ports { gpio_i[0]  }];    #IO_L7P_T1_AD2P_35 Sch=SW1
-
-# Only two physical switches on Arty Z7
-# For additional inputs, could use buttons or ChipKit pins if needed
+set_property -dict { PACKAGE_PIN G15  IOSTANDARD LVCMOS33 }     [get_ports { fetch_en_i }];    #IO_L19N_T3_VREF_35         Sch=sw[0]
+set_property -dict { PACKAGE_PIN P15  IOSTANDARD LVCMOS33 }     [get_ports { gpio_i[0]  }];    #IO_L24P_T3_34              Sch=sw[1]
+set_property -dict { PACKAGE_PIN W13  IOSTANDARD LVCMOS33 }     [get_ports { gpio_i[1]  }];    #IO_L4N_T0_34               Sch=sw[2]
+set_property -dict { PACKAGE_PIN T16  IOSTANDARD LVCMOS33 }     [get_ports { gpio_i[2]  }];    #IO_L9P_T1_DQS_34           Sch=sw[3]
 
 set_false_path -from [get_ports {gpio_i*}] -to *
 set_input_delay -clock sys_clk 0.0 [get_ports {gpio_i*}]
@@ -19,15 +18,15 @@ set_input_delay -clock sys_clk 0.0 [get_ports {gpio_i*}]
 # --------------------------------------------------------------------------------------------------
 # Buttons
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN D19  IOSTANDARD LVCMOS33 }     [get_ports { sys_reset }];       #IO_L4P_T0_35 Sch=BTN0
+set_property -dict { PACKAGE_PIN K18  IOSTANDARD LVCMOS33 }     [get_ports { sys_reset }];       #IO_L12N_T1_MRCC_35         Sch=btn[0]
 
 # --------------------------------------------------------------------------------------------------
 # LEDs
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN R14  IOSTANDARD LVCMOS33 }     [get_ports { status_o  }];       #IO_L6N_T0_VREF_34 Sch=LED0
-set_property -dict { PACKAGE_PIN P14  IOSTANDARD LVCMOS33 }     [get_ports { gpio_o[0] }];       #IO_L6P_T0_34 Sch=LED1
-set_property -dict { PACKAGE_PIN N16  IOSTANDARD LVCMOS33 }     [get_ports { gpio_o[1] }];       #IO_L21N_T3_DQS_AD14N_35 Sch=LED2
-set_property -dict { PACKAGE_PIN M14  IOSTANDARD LVCMOS33 }     [get_ports { gpio_o[2] }];       #IO_L23P_T3_35 Sch=LED3
+set_property -dict { PACKAGE_PIN M14  IOSTANDARD LVCMOS33 }     [get_ports { status_o  }];       #IO_L23P_T3_35              Sch=led[0]
+set_property -dict { PACKAGE_PIN M15  IOSTANDARD LVCMOS33 }     [get_ports { gpio_o[0] }];       #IO_L23N_T3_35              Sch=led[1]
+set_property -dict { PACKAGE_PIN G14  IOSTANDARD LVCMOS33 }     [get_ports { gpio_o[1] }];       #IO_0_35                    Sch=led[2]
+set_property -dict { PACKAGE_PIN D18  IOSTANDARD LVCMOS33 }     [get_ports { gpio_o[2] }];       #IO_L3N_T0_DQS_AD1N_35      Sch=led[3]
 
 set_false_path -from * -to [get_ports {status_o}]
 set_output_delay -clock sys_clk 0.0 [get_ports {status_o}]
@@ -36,18 +35,18 @@ set_false_path -from * -to [get_ports {gpio_o*}]
 set_output_delay -clock sys_clk 0.0 [get_ports {gpio_o*}]
 
 # --------------------------------------------------------------------------------------------------
-# JTAG Headers (Using ChipKit Inner Digital Header)
+# Pmod Header JB (Zybo Z7-20 only)
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN V8   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tms_i   }];    #IO_L15P_T2_DQS_13 Sch=CK_IO32
-set_property -dict { PACKAGE_PIN W8   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tdi_i   }];    #IO_L15N_T2_DQS_13 Sch=CK_IO38
-set_property -dict { PACKAGE_PIN U7   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tdo_o   }];    #IO_L11P_T1_SRCC_13 Sch=CK_IO29
-set_property -dict { PACKAGE_PIN V7   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tck_i   }];    #IO_L11N_T1_SRCC_13 Sch=CK_IO30
+set_property -dict { PACKAGE_PIN V8   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tms_i   }];          #IO_L15P_T2_DQS_13          Sch=jb_p[1]
+set_property -dict { PACKAGE_PIN W8   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tdi_i   }];          #IO_L15N_T2_DQS_13          Sch=jb_n[1]
+set_property -dict { PACKAGE_PIN U7   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tdo_o   }];          #IO_L11P_T1_SRCC_13         Sch=jb_p[2]
+set_property -dict { PACKAGE_PIN V7   IOSTANDARD LVCMOS33 }     [get_ports { jtag_tck_i   }];          #IO_L11N_T1_SRCC_13         Sch=jb_n[2]
 
 # --------------------------------------------------------------------------------------------------
-# UART Headers (Using ChipKit Outer Digital Header)
+# Pmod Header JC
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN V15  IOSTANDARD LVCMOS33 }     [get_ports { uart_rx_i }];       #IO_L10P_T1_34 Sch=CK_IO4
-set_property -dict { PACKAGE_PIN W15  IOSTANDARD LVCMOS33 }     [get_ports { uart_tx_o }];       #IO_L10N_T1_34 Sch=CK_MISO
+set_property -dict { PACKAGE_PIN V15  IOSTANDARD LVCMOS33 }     [get_ports { uart_rx_i }];          #IO_L10P_T1_34              Sch=jc_p[1]
+set_property -dict { PACKAGE_PIN W15  IOSTANDARD LVCMOS33 }     [get_ports { uart_tx_o }];          #IO_L10N_T1_34              Sch=jc_n[1]
 
 # SoC clock is generated by clock wizard and its constraints
 set SOC_TCK 50.0
@@ -101,6 +100,9 @@ set_input_delay -max -clock clk_jtag [expr { 0.20 * $JTAG_TCK }] [get_ports {jta
 
 set_output_delay -min -clock clk_jtag [expr { 0.10 * $JTAG_TCK }] [get_ports jtag_tdo_o]
 set_output_delay -max -clock clk_jtag [expr { 0.20 * $JTAG_TCK }] [get_ports jtag_tdo_o]
+
+# set_max_delay -from [get_ports jtag_trst_ni] $JTAG_TCK
+# set_false_path -hold -from [get_ports jtag_trst_ni]
 
 ########
 # UART #

@@ -7,5 +7,5 @@ set sources_dir ${root_dir}/sourcecode
 
 set top croc_xilinx
 
-set board  digilentinc.com:zybo-z7-20:part0:1.1
+set board  digilentinc.com:arty-z7-20:part0:1.1
 set device xc7z020clg400-1
