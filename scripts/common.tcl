@@ -1,5 +1,5 @@
 # Set common variables 
-set root_dir    TODO/croc_zybo
+set root_dir    ..
 set vivado_dir  ${root_dir}/vivado
 set constr_dir  ${vivado_dir}/constraints
 set scripts_dir ${root_dir}/scripts

@@ -4,7 +4,7 @@ SCRIPTS_DIR := $(ROOT_DIR)/scripts
 
 PROJ_NAME := prova
 
-VIVADO ?= vitis-2023.2 vivado
+VIVADO ?= vitis-2022.1 vivado
 
 .PHONY: all
 all:

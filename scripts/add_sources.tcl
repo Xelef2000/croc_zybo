@@ -1,5 +1,5 @@
 # This script was generated automatically by bender.
-set ROOT "TODO/croc_zybo"
+set ROOT ".."
 add_files -norecurse -fileset [current_fileset] [list \
     $ROOT/sourcecode/tech_cells_generic/fpga/pad_functional_xilinx.sv \
     $ROOT/sourcecode/tech_cells_generic/fpga/tc_clk_xilinx.sv \
