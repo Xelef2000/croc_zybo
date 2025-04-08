@@ -19,7 +19,9 @@ set_input_delay -clock sys_clk 0.0 [get_ports {gpio_i*}]
 # --------------------------------------------------------------------------------------------------
 # Buttons
 # --------------------------------------------------------------------------------------------------
-set_property -dict { PACKAGE_PIN D19  IOSTANDARD LVCMOS33 }     [get_ports { sys_reset }];       #IO_L4P_T0_35 Sch=BTN0
+set_property -dict { PACKAGE_PIN D19  IOSTANDARD LVCMOS33 }     [get_ports { sys_reset }];     #IO_L4P_T0_35 Sch=BTN0
+set_property -dict { PACKAGE_PIN D20  IOSTANDARD LVCMOS33 }     [get_ports { gpio_i[1]  }];    #IO_L4N_T0_35 Sch=BTN1
+set_property -dict { PACKAGE_PIN L20  IOSTANDARD LVCMOS33 }     [get_ports { gpio_i[2]  }];    #IO_L9N_T1_DQS_AD3N_35 Sch=BTN2
 
 # --------------------------------------------------------------------------------------------------
 # LEDs
